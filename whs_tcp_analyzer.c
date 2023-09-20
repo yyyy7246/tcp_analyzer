@@ -96,7 +96,7 @@ void got_packet(u_char *args, const struct pcap_pkthdr *header,
 
     /* Transport header */
     struct tcpheader * tcp = (struct tcpheader *)
-	    		     (packet + sizeof(struct ethheader) + sizeof(struct ipheader));
+	    		     (packet + sizeof(struct ethheader) + (ip->iph_ihl)*4);
     printf("  TCP From: %d\n",ntohs(tcp->tcp_sport));
     printf("  TCP   To: %d\n",ntohs(tcp->tcp_dport)); 
 
